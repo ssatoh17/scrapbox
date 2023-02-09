@@ -35,7 +35,7 @@ startPresentationMenu.addEventListener('click', ()=> {
                   k2.keyCode = code;
                   document.getElementById("text-input").dispatchEvent(k2);
                }
-               keyDownAndUp(39);
+               keyDownAndUp(39); // force a right arrow keypress(keydown→keyup) event to fire
             }
          } catch(err) { console.error(err) }
     	}
