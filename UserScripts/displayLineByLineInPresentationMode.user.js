@@ -10,29 +10,34 @@ let startPresentationMenu = convertedTypeArrayLis.filter( li => {
 // document.querySelectorAll('.dropdown-menu.dropdown-menu-right')[3].querySelectorAll('li')[19].addEventListener('click', ()=> {
 startPresentationMenu.addEventListener('click', ()=> {
 
-  // 全てを非表示にする
+  // hide all rows
   document.querySelectorAll('.lines .line').forEach( line => {
    	// line.style.display = 'block'; // 効かなかった・・・
    	line.style.display = 'none';
   });
   
-  let 下矢印キーを押す度に１行ずつ表示 = () => {
+  let displayLineByLine = () => {
     document.addEventListener('keydown', e=> {
     	// console.log(e); console.log(e.keyCode);
     	let curSection = document.querySelector('#app-container style').textContent.replace('.lines .line:not(.','').replace(') { display: none; }','');
-    	if(e.keyCode == 40){ // ↓(下矢印)キー     	   
-    	   // console.log({curSection});
-    	   // document.querySelectorAll('.lines .line.' + curSection).forEach( line => {
-    	   // // document.querySelectorAll('.lines .line.section-0').forEach( line => {
-    	   		// console.log(line);
-    	   		// // if(line.style.display == 'block') {
-    	   		// if(line.style.display == 'none') {
-    	   			// line.style.display = '';
-    	   			// // line.style.display = 'block';
-    	   			// return;
-    	   		// }
-    	   // });
-    	   document.querySelector('.lines .line.' + curSection+'[style*="display: none"]').style.display = '';
+    	if(e.keyCode == 40){ // down arrow key
+         try {
+            if(document.querySelector('.lines .line.' + curSection+'[style*="display: none"]')){
+    	         document.querySelector('.lines .line.' + curSection+'[style*="display: none"]').style.display = '';
+            } else {
+               let keyDownAndUp = code => {
+                  k = document.createEvent("Event");
+                  k.initEvent("keydown",true,true);
+                  k.keyCode = code;
+                  document.dispatchEvent(k);
+                  k2 = document.createEvent("Event");
+                  k2.initEvent("keyup",true,true);
+                  k2.keyCode = code;
+                  document.getElementById("text-input").dispatchEvent(k2);
+               }
+               keyDownAndUp(39);
+            }
+         } catch(err) { console.error(err) }
     	}
     	if(e.keyCode == 38) { // up arrow key
     		// display line by line
@@ -53,5 +58,5 @@ startPresentationMenu.addEventListener('click', ()=> {
     	
     });
   };
-  下矢印キーを押す度に１行ずつ表示();
+  displayLineByLine();
 });
