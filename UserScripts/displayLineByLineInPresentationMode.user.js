@@ -13,9 +13,12 @@ startPresentationMenu.addEventListener('click', ()=> {
 
   // hide all rows
   document.querySelectorAll('.lines .line').forEach( line => {
-   	// line.style.display = 'block'; // 効かなかった・・・
+   	// line.style.display = 'block';
    	line.style.display = 'none';
   });
+  
+  // Automatically display only the first line (title) of the first slide
+  document.querySelector('.lines .line.section-0').style.display = '';
   
   let displayLineByLine = () => {
     document.addEventListener('keydown', e=> {
