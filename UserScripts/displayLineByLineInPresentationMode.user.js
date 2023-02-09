@@ -1,5 +1,6 @@
 /** プレゼンテーションモード時に、下矢印キーで1行ずつ表示（上矢印キーで全て表示） */
-
+(function () { 
+  
 let _lis = document.querySelectorAll('.dropdown-menu.dropdown-menu-right')[3].querySelectorAll('li');
 const convertedTypeArrayLis = [].map.call(_lis, li => li); // NodeList to Arry
 let startPresentationMenu = convertedTypeArrayLis.filter( li => {
@@ -60,3 +61,5 @@ startPresentationMenu.addEventListener('click', ()=> {
   };
   displayLineByLine();
 });
+
+})();
