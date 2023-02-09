@@ -26,11 +26,11 @@ startPresentationMenu.addEventListener('click', ()=> {
     	         document.querySelector('.lines .line.' + curSection+'[style*="display: none"]').style.display = '';
             } else {
                let keyDownAndUp = code => {
-                  k = document.createEvent("Event");
+                  let k = document.createEvent("Event");
                   k.initEvent("keydown",true,true);
                   k.keyCode = code;
                   document.dispatchEvent(k);
-                  k2 = document.createEvent("Event");
+                  let k2 = document.createEvent("Event");
                   k2.initEvent("keyup",true,true);
                   k2.keyCode = code;
                   document.getElementById("text-input").dispatchEvent(k2);
